@@ -4,7 +4,9 @@ import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     SwipeRefreshLayout swipeRefreshLayout;
     TextView textView;
+    CardView cardView;
     String[] text;
 
     @Override
@@ -29,6 +32,14 @@ public class MainActivity extends AppCompatActivity {
 
         text = new String[] { "No Data Fetched" };
         textView = (TextView) findViewById(R.id.duckText);
+
+        cardView = (CardView) findViewById(R.id.cardView);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateText();
+            }
+        });
 
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refreshLayout);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
