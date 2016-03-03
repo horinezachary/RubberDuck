@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 updateText();
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
 
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    URL url = new URL("");
+                    URL url = new URL("https://raw.githubusercontent.com/DanilaFe/RubberDuck/master/source.txt");
                     InputStream inputStream = url.openStream();
                     String total;
                     String bufferString;
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateText(){
         int textIndex = (int) Math.round(Math.random() * text.length) - 1;
+        textIndex = Math.max(textIndex, 0);
         textView.setText(text[textIndex]);
     }
 }
